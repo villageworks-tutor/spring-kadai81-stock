@@ -11,6 +11,26 @@
 	<main>
 		<article>
 			<h2>商品一覧</h2>
+			<table border="1">
+				<tr>
+					<th>商品ID</th>
+					<th>商品名</th>
+					<th>価格</th>
+					<th>在庫</th>
+					<th></th>
+				</tr>
+				<tr th:each="item:${itemList}">
+					<td th:text="${item.id}"></td>
+					<td th:text="${item.name}"></td>
+					<td th:text="${item.price}"></td>
+					<td th:text="${item.quantity}"></td>
+					<td>
+						<form action="" method="">
+							<button>入出庫</button>
+						</form>
+					</td>
+				</tr>
+			</table>
 		</article>
 	</main>
 </body>
