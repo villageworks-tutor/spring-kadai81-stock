@@ -29,4 +29,8 @@ public class Item {
 		return quantity;
 	}
 	
+	public void setQuauntity(int quantity) {
+		this.quantity = quantity;
+	}
+	
 }
