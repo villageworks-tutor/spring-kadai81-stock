@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.Thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>在庫管理</title>
+</head>
+<body>
+	<header>
+		<h1>在庫管理システム</h1>
+	</header>
+	<main>
+		<article>
+			<section>
+			<h2>商品</h2>
+			<table border="1">
+				<tr>
+					<th>商品ID</th>
+					<th>商品名</th>
+					<th>価格</th>
+					<th>在庫</th>
+				</tr>
+				<tr>
+					<td th:text="${item.id}"></td>
+					<td th:text="${item.name}"></td>
+					<td th:text="${item.price}"></td>
+					<td th:text="${item.quantity}"></td>
+				</tr>
+			</table>
+			<br />
+			<form action="" method="">
+				<input type="text" name="inbound" />
+				<button>入庫</button>
+			</form>
+			<form action="" method="">
+				<input type="text" name="outbound" />
+				<button>出庫</button>
+			</form>
+			</section>
+			<section>
+			<h2>入出庫履歴</h2>
+			<table border="1">
+				<tr>
+					<th>入出庫日時</th>
+					<th>入庫</th>
+					<th>出庫</th>
+				</tr>
+				<tr th:each="stock:${stockList}">
+					<td th:text="${stock.checkedAt}"></td>
+					<th:block th:if="${stock.quantity > 0}">
+						<td th:text="${stock.quantity}"></td>
+						<td></td>
+					</th:block>
+					<th:block th:unless="${stock.quantity > 0}">
+						<td></td>
+						<td th:text="${stock.quantity * (-1)}"></td>
+					</th:block>
+				</tr>
+			</table>
+			</section>
+			<p><a href="/products">商品一覧</a></p>
+		</article>
+	</main>
+</body>
+</html>
