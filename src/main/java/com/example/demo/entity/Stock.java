@@ -21,6 +21,23 @@ public class Stock {
 	private Timestamp checkedAt; // 入出庫日時
 	private Integer quantity;    // 数量
 	
+	/**
+	 * デフォルトコンストラクタ
+	 */
+	public Stock() {}
+	
+	/**
+	 * コンストラクタ
+	 * @param itemId
+	 * @param cheeckedAt
+	 * @param quantity
+	 */
+	public Stock(Integer itemId, Timestamp cheeckedAt, Integer quantity) {
+		this.itemId = itemId;
+		this.checkedAt = cheeckedAt;
+		this.quantity = quantity;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
