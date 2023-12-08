@@ -31,7 +31,7 @@
 				<input type="number" name="stock" />
 				<button>入庫</button>
 			</form>
-			<form action="" method="">
+			<form th:action="'/stocks/outbound/' + ${item.id}" method="post">
 				<input type="number" name="stock" />
 				<button>出庫</button>
 			</form>
