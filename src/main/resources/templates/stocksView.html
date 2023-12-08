@@ -19,7 +19,14 @@
 					<th>価格</th>
 					<th>在庫</th>
 				</tr>
+				<tr>
+					<td th:text="${item.id}"></td>
+					<td th:text="${item.name}"></td>
+					<td th:text="${item.price}"></td>
+					<td th:text="${item.quantity}"></td>
+				</tr>
 			</table>
+			<br />
 			<form action="" method="">
 				<input type="text" name="inbound" />
 				<button>入庫</button>
@@ -36,6 +43,17 @@
 					<th>入出庫日時</th>
 					<th>入庫</th>
 					<th>出庫</th>
+				</tr>
+				<tr th:each="stock:${stockList}">
+					<td th:text="${stock.checkedAt}"></td>
+					<th:block th:if="${stock.quantity > 0}">
+						<td th:text="${stock.quantity}"></td>
+						<td></td>
+					</th:block>
+					<th:block th:unless="${stock.quantity > 0}">
+						<td></td>
+						<td th:text="${stock.quantity * (-1)}"></td>
+					</th:block>
 				</tr>
 			</table>
 			</section>
