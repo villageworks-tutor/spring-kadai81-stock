@@ -63,4 +63,27 @@ public class StockController {
 		// 画面遷移
 		return "redirect:/stocks/" + itemId;
 	}
+	
+	// 出庫処理
+	@PostMapping("/stocks/outbound/{id}")
+	public String outbound(
+			@PathVariable("id") Integer itemId,
+			@RequestParam("stock") Integer quantity) {
+		// 出庫数を負数に変換
+		quantity *= -1;
+		// 出庫履歴をインスタンス化
+		Stock stock = new Stock(itemId, new Timestamp(System.currentTimeMillis()), quantity);
+		// 出庫履歴を永続化
+		stockRepository.save(stock);
+		
+		// リクエストパラメータをもとに商品を取得
+		Item item = itemRepository.findById(itemId).get();
+		// 在庫数を変更
+		item.setQuauntity(item.getQuantity() + quantity);
+		// 商品を永続化
+		itemRepository.save(item);
+		
+		// 画面遷移
+		return "redirect:/stocks/" + itemId;
+	}
 }
